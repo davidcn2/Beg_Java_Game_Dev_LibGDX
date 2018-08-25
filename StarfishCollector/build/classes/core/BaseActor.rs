@@ -1,0 +1,1 @@
+starfishcollector.BaseActor
