@@ -34,14 +34,16 @@ Any Java object that can pass more than one IS-A test is considered to be polymo
 public class GameScreen extends BaseScreen // Extends the BaseScreen class.
 {
     
-    // The class extends the basic functionality of a BaseScreen class and stores information
-    // about the game -- background, ground, player, stars, sparkles, enemies, and explosions and 
-    // related properties (map height and width, timers, speeds, ...).
+    /*
+    The class extends the basic functionality of a BaseScreen class and stores information
+    about the game -- background, ground, player, stars, sparkles, enemies, and explosions and 
+    related properties (map height and width, timers, speeds, ...).
     
-    // Methods include:
+    Methods include:
     
-    // create:  Sets defaults.  Configures and adds the Actors to the stage.  Sets up base actors for cloning.
-    // update:  Occurs during the update phase (render method) and contains code related to game logic.
+    create:  Sets defaults.  Configures and adds the Actors to the stage.  Sets up base actors for cloning.
+    update:  Occurs during the update phase (render method) and contains code related to game logic.
+    */
     
     // Declare regular variables.
     private float enemySpeed; // Speed of enemy.

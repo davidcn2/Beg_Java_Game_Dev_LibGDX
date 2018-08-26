@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.physics.box2d.Contact;
 
 /*
 Interface (implements) vs Sub-Class (extends)...
@@ -48,6 +49,8 @@ public class GameUtils
 
     frameBuilder:  Contains logic for processing a sprite sheet with images in x by y columns and rows and
                    returning the results in a single-dimensional array of TextureRegion objects.
+    getContactObject:  Checks whether one of the two objects in the passed contact are of
+                       the specified parameters.  Returns the first match or null.
     parseImageFiles:  Creates an animation from a set of files.
     parseSpriteSheet:  Contains logic for processing a sprite sheet with images in x by y columns and rows and
                        turning the results into an animation, which gets returned.
@@ -121,6 +124,83 @@ public class GameUtils
 
         // Build and return array of frames containing sprites in sheet.
         return new Array<>(frames);
+        
+    }
+    
+    // theContact = Contact object containing information about the collision.  Relates to two objects.
+    // theClass = Class name of the object sought.
+    public static Object getContactObject(Contact theContact, Class theClass)
+    {
+        
+        // The function checks whether one of the two objects in the passed contact are of
+        // the specified type.  When finding a matching class type, the function returns the
+        // user data for the associated object.
+        
+        Object objA; // User data associated with first object involved in contact / collision.
+        Object objB; // User data associated with second object involved in contact / collision.
+        
+        // Store user data from each of the objects involved in the contact.
+        objA = theContact.getFixtureA().getBody().getUserData();
+        objB = theContact.getFixtureB().getBody().getUserData();
+        
+        // If the first object matches the passed class, then...
+        if (objA.getClass().equals(theClass) )
+            // First object matches the passed class.
+            // Return the first object.
+            return objA;
+        
+        // Otherwise, if the second object matches the passed class, then...
+        else if (objB.getClass().equals(theClass) )
+            // Second object matches the passed class.
+            // Return the second object.
+            return objB;
+        
+        // Otherwise -- no object matches the passed class.
+        else
+            // Return null.
+            return null;
+        
+    }
+    
+    // theContact = Contact object containing information about the collision.  Relates to two objects.
+    // theClass = Class name of the object sought.
+    // fixtureName = Fixture naem of the object sought.
+    public static Object getContactObject(Contact theContact, Class theClass, String fixtureName)
+    {
+        
+        // The function checks whether one of the two objects in the passed contact are of
+        // the specified class type and fixture name.  When finding a match, the function returns the
+        // user data for the associated object.
+        
+        String nameA; // Name of first fixture involved in contact / collision.
+        String nameB; // Name of second fixture involved in contact / collision.
+        Object objA; // User data associated with first object involved in contact / collision.
+        Object objB; // User data associated with second object involved in contact / collision.
+        
+        // Store user data from each of the objects involved in the contact.
+        objA = theContact.getFixtureA().getBody().getUserData();
+        objB = theContact.getFixtureB().getBody().getUserData();
+        
+        // Store fixture names involved in the contact.
+        nameA = (String)theContact.getFixtureA().getUserData();
+        nameB = (String)theContact.getFixtureB().getUserData();
+        
+        // If first class type and fixture name matches passed values, then...
+        if ( objA.getClass().equals(theClass) && nameA.equals(fixtureName) )
+            // First class type and fixture name match passed values.
+            // Return the first object.
+            return objA;
+        
+        // Otherwise, if second class type and fixture name matches passed values, then...
+        else if ( objB.getClass().equals(theClass) && nameB.equals(fixtureName))
+            // Second class type and fixture name match passed values.
+            // Return the first object.
+            return objB;
+        
+        // Otherwise -- no object matches the passed class.
+        else
+            // Return null.
+            return null;
         
     }
     
