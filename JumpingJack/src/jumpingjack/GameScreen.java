@@ -43,7 +43,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
 
     /*
     The class extends the basic functionality of a BaseScreen class and stores information
-    about the game -- background, ground, player, stars, sparkles, enemies, and explosions and 
+    about the game -- background, player, coin, ball, crate, dirt, ground / platform, and 
     related properties (map height and width, timers, speeds, ...).
     
     Methods include:
@@ -144,6 +144,8 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         Texture crateTex; // Texture (image) to use for crate.
         Texture dirtTex; // Texture (image) to use for dirt.
         Texture groundTex; // Texture (image) to use for ground.
+        Texture jumpTex; // Texture (image) to use for jumping player.
+        Texture standTex; // Texture (image) to use for standing player.
         Texture t; // Texture (image) to use for background.
         Animation walkAnim; // Animation for walking player.
         
@@ -207,7 +209,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         ball.initializePhysics( world ); // Initialize Body (based on BodyDef) and Fixture.  Adds to World.
         
         // Set up the (base) coin object.
-        baseCoin = new Coin(); // Create a new Box2DActor for the (base) coin object.
+        baseCoin = new Coin(); // Create a new Coin / Box2DActor for the (base) coin object.
         coinTex = new Texture( Gdx.files.internal("assets/coin.png") ); // Load image to buffer.
         coinTex.setFilter(TextureFilter.Linear, TextureFilter.Linear); // Set filter type -- 
           // controlling how pixel colors are interpolated when image is rotated or stretched.
@@ -242,11 +244,11 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         walkAnim = GameUtils.parseImageFiles(
           "assets/walk-", ".png", 3, 0.15f, Animation.PlayMode.LOOP_PINGPONG );
         player.storeAnimation( "walk", walkAnim ); // Store animation in actor (for walking).
-        Texture standTex = new Texture( Gdx.files.internal("assets/stand.png") ); // Load image to buffer.
+        standTex = new Texture( Gdx.files.internal("assets/stand.png") ); // Load image to buffer.
         standTex.setFilter(TextureFilter.Linear, TextureFilter.Linear); // Set filter type -- controlling how 
           // pixel colors are interpolated when image is rotated or stretched.
         player.storeAnimation( "stand", standTex ); // Store animation in actor (for standing).
-        Texture jumpTex = new Texture( Gdx.files.internal("assets/jump.png") ); // Load image to buffer.
+        jumpTex = new Texture( Gdx.files.internal("assets/jump.png") ); // Load image to buffer.
         jumpTex.setFilter(TextureFilter.Linear, TextureFilter.Linear); // Set filter type -- controlling how 
           // pixel colors are interpolated when image is rotated or stretched.
         player.storeAnimation( "jump", jumpTex ); // Store animation in actor (for jumping).
@@ -439,22 +441,20 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
             world.destroyBody( ba.getBody() );
         });
 
-        
-        
         // Process continuous input.
         
         // If the user pressed the left button, then...
         if( Gdx.input.isKeyPressed(Keys.LEFT) )
         {
             // User pressed the left button.
-            player.setScale( -1, 1 );
+            player.setScale( -1, 1 ); // Change orientation of graphic (flip horizontally).
             player.applyForce( new Vector2(-3.0f, 0) ); // Apply force to move player left.
         }
 
         if( Gdx.input.isKeyPressed(Keys.RIGHT) )
         {
             // User pressed the right button.
-            player.setScale( 1, 1 );
+            player.setScale( 1, 1 ); // Use regular orientation of graphic.
             player.applyForce( new Vector2(3.0f, 0) ); // Apply force to move player right.
         }
 
