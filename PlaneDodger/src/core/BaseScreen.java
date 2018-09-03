@@ -52,14 +52,15 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
 
 {
 
-    // The class uses the elements of the Screen, InputProcessor, and ControllerListener classes in LibGDX.
+    /*
+    The class uses the elements of the Screen, InputProcessor, and ControllerListener classes in LibGDX.
 
-    // Define the class as abstract so that subclasses (xyz extends BaseScreen) can implement methods in
-    // different ways.  The class gets defined as abstract, instead of an interface, since it provides
-    // code for some of its methods.  The reused methods in the current class must use the abstract
-    // modifier.
+    Define the class as abstract so that subclasses (xyz extends BaseScreen) can implement methods in
+    different ways.  The class gets defined as abstract, instead of an interface, since it provides
+    code for some of its methods.  The reused methods in the current class must use the abstract
+    modifier.
 
-    /* Detailed class description:
+    Detailed class description:
 
     The class refactors common elements from subclasses to provide for reuse and eliminate redundancy.
     The class handles the following tasks, in common to all Screen-extending classes:

@@ -423,7 +423,7 @@ public class BaseActor extends Group // Extends the Group class from LibGDX.
         super.act ( dt );
 
     }
-
+    
     // A Batch is used to draw 2D rectangles that reference a texture (region).
     // The class will batch the drawing commands and optimize them for processing by the GPU.
 

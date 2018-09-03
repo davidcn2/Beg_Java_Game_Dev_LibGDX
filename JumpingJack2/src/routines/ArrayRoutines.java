@@ -44,7 +44,7 @@ public class ArrayRoutines
         // The three dots (varargs) allow the passing in of an array of parameters without explicitly 
         // creating the array.
         // The function places the elements at the specified index (destPos) within the destination array (arr).
-        // Usage:  addAll(countryId, 2, 1, 2, 3);
+        // Usage:  addAll(countryId, "2", 1, 2, 3);
         
         int destPosition; // Position to which to copy in destination array, converted to an integer.
         
@@ -113,7 +113,7 @@ public class ArrayRoutines
         // The three dots (varargs) allow the passing in of an array of parameters without explicitly 
         // creating the array.
         // The function places the elements at the specified index (destPos) within the destination array (arr).
-        // Usage:  addAll(countryId, 2, 1, 2, 3);
+        // Usage:  addAll(countryId, "2", 1, 2, 3);
         
         // If one or more elements exist in the passed elements list, then...
         if (elements != null)
@@ -201,6 +201,75 @@ public class ArrayRoutines
         // creating the array.
         // The function places the elements at the end of the destination array (arr).
         // Usage:  addAll_End(countryName, "Mexico", "US", "Ukraine");
+        
+        // If one or more elements exist in the passed elements list, then...
+        if (elements != null)
+            {
+            // Copy the elements to the end of the first list (arr).
+            System.arraycopy(elements, 0, arr, arr.length - 1, elements.length);
+            }
+        
+    }
+    
+    // arr = Destination (float) array.
+    // elements = Source (float) array.
+    public static void addAll(float[] arr, float ... elements)
+    {
+        
+        // The function allows for the addition of one to many float values to an array (passed).
+        // The three dots can only be used in a method argument, and are called varargs. 
+        // The three dots (varargs) allow the passing in of an array of parameters without explicitly 
+        // creating the array.
+        // The function places the elements at the beginning of the destination array (arr).
+        // Usage:  addAll(countryId, 1f, 2f, 3f);
+        
+        // If one or more elements exist in the passed elements list, then...
+        if (elements != null)
+            {
+            // Copy the elements to the beginning of the first list (arr).
+            System.arraycopy(elements, 0, arr, 0, elements.length);
+            }
+        
+    }
+    
+    // arr = Destination (float) array.
+    // destPos = Position at which to copy within the target (arr), base 0.  0 = First array element.
+    // elements = Source (float) array.
+    public static void addAll(float[] arr, String destPos, float ... elements)
+    {
+        
+        // The function allows for the addition of one to many float values to an array (passed).
+        // The three dots can only be used in a method argument, and are called varargs. 
+        // The three dots (varargs) allow the passing in of an array of parameters without explicitly 
+        // creating the array.
+        // The function places the elements at the specified index (destPos) within the destination array (arr).
+        // Usage:  addAll(countryId, "2", 1f, 2f, 3f);
+        
+        int destPosition; // Position to which to copy in destination array, converted to an integer.
+        
+        // Convert destination position to an integer.
+        destPosition = Integer.parseInt(destPos);
+        
+        // If one or more elements exist in the passed elements list, then...
+        if (elements != null)
+            {
+            // Copy the elements to the specified position within the first list (arr).
+            System.arraycopy(elements, 0, arr, destPosition, elements.length);
+            }
+        
+    }
+    
+    // arr = Destination (float) array.
+    // elements = Source (float) array.
+    public static void addAll_End(float[] arr, float ... elements)
+    {
+        
+        // The function allows for the addition of one to many float values to an array (passed).
+        // The three dots can only be used in a method argument, and are called varargs. 
+        // The three dots (varargs) allow the passing in of an array of parameters without explicitly 
+        // creating the array.
+        // The function places the elements at the end of the destination array (arr).
+        // Usage:  addAll_End(countryId, 1, 2, 3);
         
         // If one or more elements exist in the passed elements list, then...
         if (elements != null)

@@ -244,7 +244,7 @@ public class TurtleLevel extends BaseScreen // Extends the BaseScreen class.
             // Load image to buffer.
             tex = new Texture(Gdx.files.internal(fileName));
             
-            // Set file type -- controlling how pixel colors are interpolated when image is
+            // Set filter type -- controlling how pixel colors are interpolated when image is
             // rotated or stretched.
             tex.setFilter(TextureFilter.Linear, TextureFilter.Linear);
             

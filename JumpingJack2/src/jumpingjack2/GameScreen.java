@@ -336,7 +336,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
             Scroll background more slowly to create parallax effect.
         */
         
-        Camera mainCamera;
+        Camera mainCamera; // Camera object associated with the main stage.
         
         // Call the Actor.act(float) method on each actor in the UI stage.
         // Typically called each frame.  The method also fires enter and exit events.
