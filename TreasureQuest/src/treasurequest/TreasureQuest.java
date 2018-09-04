@@ -1,21 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package treasurequest;
 
-/**
- *
- * @author davidcohn
- */
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
 public class TreasureQuest {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
+    public static void main(String[] args) 
+    {
+        
+        // The function configures and launches the application.
+        
+        LwjglApplicationConfiguration config; // Application configuration object.
+        
+        // Create application configuration object.
+        config = new LwjglApplicationConfiguration();
+
+	// Change configuration settings.
+	config.width = 800; // Set width of application window.
+	config.height = 600; // Set height of application window.
+	config.title = "Treasure Quest!"; // Set title of application.
+        
+        // Launch game using configuration settings.
+	new LwjglApplication(new TreasureQuestGame(), config);
+        
     }
     
 }

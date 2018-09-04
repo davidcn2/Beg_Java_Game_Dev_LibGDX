@@ -17,7 +17,7 @@ public class DemoScreenGame extends BaseGame
     public void create() 
     {
         
-        // The function creates a new GameScreen object used to go to the main screen
+        // The function creates a new DemoScreen object used to go to the main screen
         // when the application starts.
         
         // Create new DemoScreen, which will act as the level object.

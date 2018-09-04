@@ -73,7 +73,7 @@ public class DemoScreen extends BaseScreen // Extends the BaseScreen class.
     }
 
     public final void create()
-    {    
+    {
         
         // The function occurs during the startup / create phase and accomplishes the following:
         
@@ -228,7 +228,7 @@ public class DemoScreen extends BaseScreen // Extends the BaseScreen class.
         The function occurs during the update phase and contains code related to game logic for moving the
         player and camera:
         
-        (With Shift key press)              (Without shift key pressed)
+        (With Shift key press)              (Without Shift key pressed)
         1.  W = Move player forward.        1.  W = Move camera forward.
         2.  S = Move player backward.       2.  S = Move camera backward.
         3.  A = Move player left.           3.  A = Move camera left.
@@ -241,6 +241,7 @@ public class DemoScreen extends BaseScreen // Extends the BaseScreen class.
                                             10. G = Tilt camera downward.
         */
         
+        // Declare constants.
         final float speed = 3.0f; // Movement speed.
         final float rotateSpeed = 45.0f; // Rotation speed.
         

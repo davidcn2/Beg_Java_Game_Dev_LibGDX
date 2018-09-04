@@ -78,7 +78,7 @@ public class PhysicsActor extends AnimatedActor { // Extends the AnimatedActor c
     // setVelocityY:  Sets the velocity vector using the passed y value.
 
     @SuppressWarnings("FieldMayBeFinal")
-    protected Vector2 velocity; // Actor velocity (speed) in x and y directions.
+    private Vector2 velocity; // Actor velocity (speed) in x and y directions.
     @SuppressWarnings("FieldMayBeFinal")
     private Vector2 acceleration; // Actor acceleration rate in x and y directions.
     private float maxSpeed; // Maximum velocity (speed).

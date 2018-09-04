@@ -1,17 +1,17 @@
 package core;
 
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.controllers.*;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.controllers.*;
-import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import java.awt.Point;
 
 /*
@@ -49,16 +49,18 @@ ArrayList supports dynamic arrays that can grow as needed.
 @SuppressWarnings("unused")
 // Implements Screen, InputProcessor, and ControllerListener interfaces from LibGDX.
 public abstract class BaseScreen implements Screen, InputProcessor, ControllerListener
+
 {
-    
-    // The class uses the elements of the Screen, InputProcessor, and ControllerListener classes in LibGDX.
 
-    // Define the class as abstract so that subclasses (xyz extends BaseScreen) can implement methods in
-    // different ways.  The class gets defined as abstract, instead of an interface, since it provides
-    // code for some of its methods.  The reused methods in the current class must use the abstract
-    // modifier.
+    /*
+    The class uses the elements of the Screen, InputProcessor, and ControllerListener classes in LibGDX.
 
-    /* Detailed class description:
+    Define the class as abstract so that subclasses (xyz extends BaseScreen) can implement methods in
+    different ways.  The class gets defined as abstract, instead of an interface, since it provides
+    code for some of its methods.  The reused methods in the current class must use the abstract
+    modifier.
+
+    Detailed class description:
 
     The class refactors common elements from subclasses to provide for reuse and eliminate redundancy.
     The class handles the following tasks, in common to all Screen-extending classes:
@@ -145,24 +147,24 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
     // same package to access them, and subclasses of that class to access them.
 
     // A final variable can only be initialized once, either via an initializer or an assignment statement.
-    
+
     static AssetManager manager; // Loads and stores assets like textures, bitmap fonts, tile maps, sounds, music, ...
-    
-    protected BaseGame game; // Screen object used for current window.
+
+    public BaseGame game; // Screen object used for current window.
     // Game objects allow an application to easily have multiple screens.
 
-    protected Stage mainStage; // Stores a 2D scene graph containing the hierarchies of actors.
+    public Stage mainStage; // Stores a 2D scene graph containing the hierarchies of actors.
     // Stage handles the viewport and distributes input events.  Contains the non-UI actors.
-    
-    protected Stage uiStage; // Stores a 2D scene graph containing UI actors.  Includes win text / labels.
+
+    public Stage uiStage; // Stores a 2D scene graph containing UI actors.  Includes win text / labels.
 
     // A Table consists of Cell objects, laid out in rows and columns, each Cell containing an Actor.
-    protected Table uiTable; // Table containing main menu elements.
-    
-    protected int viewHeightMain; // Window height for the main stage.
-    protected int viewHeightUI; // Window height for the ui stage.
-    protected int viewWidthMain; // Window width for the main stage.
-    protected int viewWidthUI; // Window width for the ui stage.
+    Table uiTable; // Table containing main menu elements.
+
+    private int viewHeightMain; // Window height for the main stage.
+    private int viewHeightUI; // Window height for the ui stage.
+    private int viewWidthMain; // Window width for the main stage.
+    private int viewWidthUI; // Window width for the ui stage.
 
     private boolean paused; // Whether game paused.
 
@@ -171,7 +173,7 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
     // windowHeight = Height to use for stages.
     public BaseScreen(BaseGame g, int windowWidth, int WindowHeight)
     {
-        
+
         // The constructor of the class:
 
         // 1.  Stores the window width and height.
@@ -180,41 +182,41 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
         // 4.  Sets up the input multiplexer to receive and pass all input data to current class and stages.
         // 5.  Creates and attaches Table to UI (main menu) stage.
         // 6.  Clear active ControllerListener objects and activate the listener.
-        
+
         InputMultiplexer im; // Contains a group of input processors.  The base screen and each
         // stage get added to the input multiplexer.  When input events occur, the multiplexer
         // forwards the information to each of the attached objects.
-        
+
         // Set defaults.
         this.paused = false;
-        
+
         // Set window size values, based on parameters.
         this.viewWidthMain = windowWidth;
         this.viewWidthUI = windowWidth;
         this.viewHeightMain = WindowHeight;
         this.viewHeightUI = WindowHeight;
-        
+
         // Store Screen object for current window.
-        game = g;
+        this.game = g;
 
         // Scale each stage and its contents to fit the current window size.
         // If aspect ratio of window does not match stage, fill in extra region with solid black.
         mainStage = new Stage( new FitViewport(windowWidth, WindowHeight) );
         uiStage   = new Stage( new FitViewport(windowWidth, WindowHeight) );
 
+        // An InputMultiplexer object is itself an InputProcessor that contains a list of other InputProcessors.
+
         // Set up input multiplexer to receive all input data and pass the information along to
         // the current class and the stages.
         im = new InputMultiplexer(this, uiStage, mainStage);
         Gdx.input.setInputProcessor( im );
-        
+
         uiTable = new Table(); // Create new Table object.
         uiTable.setFillParent(true); // The method will set the size of the Table to that of the stage.
         uiStage.addActor(uiTable); // Attach Table to the stage.
 
-        // create(); // Exists in GameScreen class.
-        
     }
-    
+
     // g = Screen object for current window.
     // mainWidth = Width to use for main stage.
     // mainHeight = Height to use for main stage.
@@ -266,73 +268,6 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
 
     }
 
-    // g = Screen object for current window.
-    public BaseScreen(BaseGame g)
-    {
-        
-        /*
-        The constructor of the class:
-
-        1.  Stores the Screen object for the current window.
-        
-        A follow-up method, finishTwoPartInitialization, must be called to:
-        
-        1.  Store the window width and height.
-        2.  Scale each stage and its contents to fit the current window size.
-        3.  Set up the input multiplexer to receive and pass all input data to current class and stages.
-        4.  Create and attaches Table to UI (main menu) stage.
-        5.  Clear active ControllerListener objects and activate the listener.
-        */
-        
-        // Set defaults.
-        this.paused = false;
-        
-        // Store Screen object for current window.
-        game = g;
-        
-    }
-    
-    // windowWidth = Width to use for stages.
-    // windowHeight = Height to use for stages.
-    public void finishTwoPartInitialization(int windowWidth, int WindowHeight)
-    {
-        
-        /*
-        The function finishes initialization when only passing the BaseGame object to the constructor:
-        
-        1.  Stores the window width and height.
-        2.  Scales each stage and its contents to fit the current window size.
-        3.  Sets up the input multiplexer to receive and pass all input data to current class and stages.
-        4.  Creates and attaches Table to UI (main menu) stage.
-        5.  Clears active ControllerListener objects and activate the listener.
-        */
-        
-        InputMultiplexer im; // Contains a group of input processors.  The base screen and each
-        // stage get added to the input multiplexer.  When input events occur, the multiplexer
-        // forwards the information to each of the attached objects.
-        
-        // Set window size values, based on parameters.
-        this.viewWidthMain = windowWidth;
-        this.viewWidthUI = windowWidth;
-        this.viewHeightMain = WindowHeight;
-        this.viewHeightUI = WindowHeight;
-
-        // Scale each stage and its contents to fit the current window size.
-        // If aspect ratio of window does not match stage, fill in extra region with solid black.
-        mainStage = new Stage( new FitViewport(windowWidth, WindowHeight) );
-        uiStage   = new Stage( new FitViewport(windowWidth, WindowHeight) );
-
-        // Set up input multiplexer to receive all input data and pass the information along to
-        // the current class and the stages.
-        im = new InputMultiplexer(this, uiStage, mainStage);
-        Gdx.input.setInputProcessor( im );
-        
-        uiTable = new Table(); // Create new Table object.
-        uiTable.setFillParent(true); // The method will set the size of the Table to that of the stage.
-        uiStage.addActor(uiTable); // Attach Table to the stage.
-        
-    }
-    
     // The abstract method (defined in the subclasses) occurs during the update phase (render method)
     // and contains code related to game logic.
     //
@@ -355,7 +290,7 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
         The function occurs during the render phase and accomplishes the following:
 
         1.  Adjusts Actor positions and other properties in the UI stage.
-        2.  If game not paused, adjusts Actor positions and other properties in the non-UI stage and processes player input.
+        2.  If game not paused, adjusts Actor positions and other properties in the main stage and processes player input.
         3.  Draws the graphics.
         */
 
@@ -406,8 +341,8 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
     }
 
     // Pause methods follow...
-    
-    private boolean isPaused()
+
+    public boolean isPaused()
     {
         // The function returns the pause state of the game (true or false).
         return paused;
@@ -426,41 +361,8 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
         paused = !paused;
     }
 
-    // Other methods follow...
-    
-    // theStage = Stage in which to center label.
-    // theLabel = Label to center.
-    public Point centerLabelUI(Stage theStage, Label theLabel)
-    {
-
-        // The function centers the label in the specified stage and returns the x and y
-        // coordinates used in its positions (based on the top left corner).
-
-        float labelHeight; // Height of the label.
-        float labelWidth; // Width of the label.
-        float labelX; // New X position of the label.
-        float labelY; // New Y position of the label.
-
-        // Store label width and height.
-        labelWidth = theLabel.getWidth();
-        labelHeight = theLabel.getHeight();
-
-        // Store new X and Y coordinates of the label.
-        labelX = (viewHeightMain - (labelWidth * theLabel.getFontScaleX())) * 0.5f;
-        labelY = (viewHeightMain - (labelHeight * theLabel.getFontScaleY())) * 0.5f;
-
-        // Set coordinates of the label.
-        theLabel.setPosition(labelX, labelY);
-
-        // Returns the new X and Y coordinates of the label.
-        return new Point((int)labelX, (int)labelY);
-
-    }
-    
-    // Implement interfaces below...
-    
     // Provide methods required by Screen interface to prevent need to do so in subclasses:  resize, pause, resume, dispose, show, hide.
-    
+
     // width = Current window window.
     // height = Current window height.
     @Override
@@ -484,10 +386,8 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
 
     @Override
     public void pause()   {  }
-
     @Override
     public void resume()  {  }
-
     @Override
     public void dispose()
     {
@@ -499,7 +399,7 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
 
     @Override
     public void show()    {  }
-
+    
     @Override
     public void hide()    {  }
 
@@ -507,7 +407,7 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
     // mouseMoved, scrolled, touchDown, touchDragged, touchUp.
 
     // Input.Keys constants -- https://libgdx.badlogicgames.com/nightlies/docs/api/com/badlogic/gdx/Input.Keys.html.
-    
+
     // keycode = Code related to the key pressed.   One of the constants in Input.Keys.
     @Override
     public boolean keyDown(int keycode)
@@ -599,7 +499,7 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
         // Return a value.
         return false;
     }
-    
+
     // Provide methods required by ControllerListener interface to prevent need to do so in subclasses.
 
     // controller = Reference to the controller.
@@ -713,5 +613,52 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
         // Return a value.
         return false;
     }
-    
+
+    // Other methods...
+
+    public int getViewWidth() {
+        return viewWidthMain;
+    }
+
+    public void setViewWidth(int viewWidth) {
+        this.viewWidthMain = viewWidth;
+    }
+
+    public int getViewHeight() {
+        return viewHeightMain;
+    }
+
+    public void setViewHeight(int viewHeight) {
+        this.viewHeightMain = viewHeight;
+    }
+
+    // theStage = Stage in which to center label.
+    // theLabel = Label to center.
+    public Point centerLabelUI(Stage theStage, Label theLabel)
+    {
+
+        // The function centers the label in the specified stage and returns the x and y
+        // coordinates used in its positions (based on the top left corner).
+
+        float labelHeight; // Height of the label.
+        float labelWidth; // Width of the label.
+        float labelX; // New X position of the label.
+        float labelY; // New Y position of the label.
+
+        // Store label width and height.
+        labelWidth = theLabel.getWidth();
+        labelHeight = theLabel.getHeight();
+
+        // Store new X and Y coordinates of the label.
+        labelX = (viewHeightMain - (labelWidth * theLabel.getFontScaleX())) * 0.5f;
+        labelY = (viewHeightMain - (labelHeight * theLabel.getFontScaleY())) * 0.5f;
+
+        // Set coordinates of the label.
+        theLabel.setPosition(labelX, labelY);
+
+        // Returns the new X and Y coordinates of the label.
+        return new Point((int)labelX, (int)labelY);
+
+    }
+
 }

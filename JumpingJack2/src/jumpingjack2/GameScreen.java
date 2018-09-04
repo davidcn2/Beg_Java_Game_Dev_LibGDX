@@ -408,6 +408,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         
     }
     
+    // dt = Time span between the current and last frame in seconds.  Passed / populated automatically.
     @Override
     public void update(float dt)
     {
@@ -463,6 +464,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
             player.applyForce( new Vector2(-3.0f, 0) ); // Apply force to move player left.
         }
 
+        // If the user pressed the right button, then...
         if( Gdx.input.isKeyPressed(Keys.RIGHT) )
         {
             // User pressed the right button.

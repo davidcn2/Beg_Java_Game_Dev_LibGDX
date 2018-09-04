@@ -38,67 +38,67 @@ Any Java object that can pass more than one IS-A test is considered to be polymo
 ArrayList supports dynamic arrays that can grow as needed.
 */
 
-public class BaseActor extends Group
+@SuppressWarnings("unused")
+public class BaseActor extends Group // Extends the Group class from LibGDX.
 {
-    
-    // The class extends the basic functionality of an Actor class in LibGDX.
 
-    // Methods include:
+    /* The class extends the basic functionality of an Actor class in LibGDX.
 
-    // act:  Overrides the parent / super class act method.  Calls the act method of the
-    //       Actor (parent / super) class.  Updates Actor position based on time.
-    // clone:  Returns a BaseActor with the same properties as the current.
-    // copy:  Copies properties from the passed to the current BaseActor.
-    // destroy:  Removes the BaseActor from its Stage and parent list (as necessary).
-    // draw:  Sets the tinting color of and draws the Actor.
-    // getBoundingPolygon:  Sets the position and rotation of the bounding polygon to that of the Actor.
-    // getBoundingRectangle:  Sets the properties of the bounding rectangle related to the texture region.
-    // getTintColor:  Gets the tint color of the Actor.
-    // moveToOrigin:  Centers a small within a larger rectangle, using the borders of the current and target BaseActor objects.
-    // overlaps:  Determines whether the bounding polygon for the passed Actor intersects (significantly)
-    //            with that of the current.  Moves current Actor minimum amount to avoid intersection.
-    // setActorName:  Sets the Actor name to the passed value.
-    // setAdditionalDefaults:  Performs additional operations for the constructor that would cause
-    //                        overridable method call errors.
-    // setEllipseBoundary:  Sets the properties of the bounding polygon related to the texture region.
-    //                      The polygon uses an ellipse with the dimensions of the texture region as
-    //                      the drivers for the width and height.
-    // setOriginCenter:  Sets the origin of BaseActor to center of associated image, in order for rotations to appear correctly.
-    // setParentList:  Sets reference to an ArrayList to which the Actor has been added.
-    // setRandomTintColor:  Sets the tint color of the Actor to a random color.
-    // setRectangleBoundary:  Sets the properties of the bounding polygon related to the texture region.
-    //                        The polygon uses a rectangle with the dimensions of the texture region as
-    //                        the bounding polygon shape.
-    // setTexture:  Sets the properties of a texture.
-    // setTintColor:  Sets the tint color of the Actor.
-    // setActorName:  Sets the Actor name to the passed value.
-    // setTintColorToDefault:  Sets the tint color of the Actor to the default.
-    
+    Methods include:
+
+    act:  Overrides the parent / super class act method.  Calls the act method of the
+          Actor (parent / super) class.  Updates Actor position based on time.
+    cloneActor:  Returns a BaseActor with the same properties as the current.
+    copy:  Copies properties from the passed to the current BaseActor.
+    destroy:  Removes the BaseActor from its Stage and parent list (as necessary).
+    draw:  Sets the tinting color of and draws the Actor.
+    getBoundingPolygon:  Sets the position and rotation of the bounding polygon to that of the Actor.
+    getBoundingRectangle:  Sets the properties of the bounding rectangle related to the texture region.
+    getTintColor:  Gets the tint color of the Actor.
+    moveToOrigin:  Centers a small within a larger rectangle, using the borders of the current and target BaseActor objects.
+    overlaps:  Determines whether the bounding polygon for the passed Actor intersects (significantly)
+               with that of the current.  Moves current Actor minimum amount to avoid intersection.
+    setActorName:  Sets the Actor name to the passed value.
+    setAdditionalDetails:  Performs additional operations for the constructor that would cause
+                           overridable method call errors.
+    setEllipseBoundary:  Sets the properties of the bounding polygon related to the texture region.
+                         The polygon uses an ellipse with the dimensions of the texture region as
+                         the drivers for the width and height.
+    setOriginCenter:  Sets the origin of BaseActor to center of associated image, in order for rotations to appear correctly.
+    setParentList:  Sets reference to an ArrayList to which the Actor has been added.
+    setRandomTintColor:  Sets the tint color of the Actor to a random color.
+    setRectangleBoundary:  Sets the properties of the bounding polygon related to the texture region.
+                           The polygon uses a rectangle with the dimensions of the texture region as
+                           the bounding polygon shape.
+    setTexture:  Sets the properties of a texture.
+    setTintColor:  Sets the tint color of the Actor.
+    setTintColorToDefault:  Sets the tint color of the Actor to the default.
+    */
+
     @SuppressWarnings({"FieldCanBeLocal"})
     private String actorName; // Name of actor.
-    public boolean copyUsingTintColor; // Whether to copy using tint color.
-    
-    public ArrayList<? extends BaseActor> parentList; // Stores a reference to an ArrayList to which the Actor has been added.
-    public TextureRegion region; // Stores image (similar to a buffer from Direct-X).  Includes more
+
+    private ArrayList<? extends BaseActor> parentList; // Stores a reference to an ArrayList to which the Actor has been added.
+    TextureRegion region; // Stores image (similar to a buffer from Direct-X).  Includes more
     // functionality than a Texture.  Supports storage of multiple images or animation frames.
     // Stores coordinates (u, v), that determine which rectangular subarea of the Texture to use.
-    public Polygon boundingPolygon; // Encapsulates a 2D polygon defined by its vertices.
+    private Polygon boundingPolygon; // Encapsulates a 2D polygon defined by its vertices.
     // A polygon can be translated and rotated.
     @SuppressWarnings("FieldMayBeFinal")
-    public Rectangle boundingRectangle; // Encapsulates a 2D rectangle defined by its corner point in the
+    private Rectangle boundingRectangle; // Encapsulates a 2D rectangle defined by its corner point in the
     // bottom left and its extents in x (width) and y (height).  The object will contain the X and Y
     // coordinates and height and width of the texture region.
-    public Color tintColor; // Color to tint the Actor.
+    private Color tintColor; // Color to tint the Actor.
     private final ColorWorks colorEngine; // Contains color related functionality.
-    
+
     public BaseActor()
     {
 
-        // The constructor of the class calls the constructor of the parent (Actor),
-        // creates texture region and polygon objects, initializes the color engine,
-        // and sets the tint color to the default.
-
         /*
+        The constructor of the class calls the constructor of the parent (Actor),
+        creates texture region and polygon objects, initializes the color engine,
+        and sets the tint color to the default.
+
         Java notes:
 
         1.  A constructor does not have a return type.
@@ -131,14 +131,14 @@ public class BaseActor extends Group
         // Set the Color used to tint the Actor to the default.
         setTintColorToDefault();
     }
-    
+
     // pl = Reference to an ArrayList to which the Actor has been added.
     public void setParentList(ArrayList<? extends BaseActor> pl)
     {
         // Set reference to an ArrayList to which the Actor has been added.
         parentList = pl;
     }
-    
+
     public void destroy()
     {
 
@@ -154,7 +154,7 @@ public class BaseActor extends Group
             parentList.remove(this);
 
     }
-    
+
     public void setOriginCenter()
     {
 
@@ -177,7 +177,7 @@ public class BaseActor extends Group
             System.err.println("error: actor size not set");
 
     }
-    
+
     // target = Target BaseActor to center within the current -- based on rectangular regions.
     public void moveToOrigin(BaseActor target)
     {
@@ -193,12 +193,12 @@ public class BaseActor extends Group
                 target.getY() + target.getOriginY() - this.getOriginY() );
 
     }
-    
+
     // t = Texture (stores a single image).
     public void setTexture(Texture t)
     {
 
-        // The function assigns the texture to the Actor and sets its properties.
+        // The function sets the properties of a texture.
 
         int h; // Height of the passed texture.
         int w; // Width of the passed texture.
@@ -214,7 +214,7 @@ public class BaseActor extends Group
         tintColor = getColor();
 
     }
-    
+
     public void setRectangleBoundary()
     {
 
@@ -242,7 +242,7 @@ public class BaseActor extends Group
         boundingPolygon.setOrigin( getOriginX(), getOriginY() );
 
     }
-    
+
     public void setEllipseBoundary()
     {
 
@@ -294,7 +294,7 @@ public class BaseActor extends Group
         boundingPolygon.setOrigin( getOriginX(), getOriginY() );
 
     }
-    
+
     public Polygon getBoundingPolygon()
     {
 
@@ -312,7 +312,7 @@ public class BaseActor extends Group
         return boundingPolygon;
 
     }
-    
+
     public Rectangle getBoundingRectangle()
     {
 
@@ -327,7 +327,7 @@ public class BaseActor extends Group
         return boundingRectangle;
 
     }
-    
+
     // other = Other Actor to check for collision detection.
     // resolve = Whether to move the other Actor along the minimum translation vector to prevent overlap.
     public boolean overlaps(BaseActor other, @SuppressWarnings("SameParameterValue") boolean resolve)
@@ -342,7 +342,8 @@ public class BaseActor extends Group
         // vector (MTV), which is the smallest vector along which an intersecting shape can get moved to
         // be separate from the other shape.
 
-        Intersector.MinimumTranslationVector mtv;
+        Intersector.MinimumTranslationVector mtv; // Minimum magnitude vector required to push the
+        // polygon defined by verts1 out of the collision with the polygon defined by verts2.
         Polygon poly1; // Reference to bounding polygon for current Actor.
         Polygon poly2; // Reference to bounding polygon for passed Actor.
 
@@ -366,9 +367,9 @@ public class BaseActor extends Group
             Minimum Translation Vector indicates the minimum magnitude vector required
             to push the polygon defined by verts1 out of the collision with the polygon
             defined by verts2.
-            Instantiate a minimum transaction vector object.
             */
 
+            // Instantiate a minimum transaction vector object.
             mtv = new Intersector.MinimumTranslationVector();
 
             // Obtain a minimum translation vector indicating the minimum magnitude vector
@@ -409,7 +410,7 @@ public class BaseActor extends Group
         return polyOverlap;
 
     }
-    
+
     // dt = Time in seconds since the last frame.  Also called delta.
     @Override
     public void act(float dt)
@@ -423,7 +424,7 @@ public class BaseActor extends Group
         super.act ( dt );
 
     }
-    
+
     // A Batch is used to draw 2D rectangles that reference a texture (region).
     // The class will batch the drawing commands and optimize them for processing by the GPU.
 
@@ -458,14 +459,14 @@ public class BaseActor extends Group
         super.draw(batch, parentAlpha);
 
     }
-    
+
     // actorName = Name to give Actor.
     public void setActorName(String actorName)
     {
         // The function sets the Actor name to the passed value.
         this.actorName = actorName;
     }
-    
+
     // Color related methods...
 
     public Color getTintColor()
@@ -504,11 +505,11 @@ public class BaseActor extends Group
         // The function sets a random tint Color for the Actor.
         this.tintColor = colorEngine.getRandomColor();
     }
-    
+
     // Copy related methods...
 
     // original = Actor from which to copy properties.
-    public void copy(BaseActor original)
+    void copy(BaseActor original)
     {
 
         // The function copies properties from the passed to the current BaseActor.
@@ -545,36 +546,20 @@ public class BaseActor extends Group
         // Copy width and height from passed to current Actor.
         this.setWidth( original.getWidth() );
         this.setHeight( original.getHeight() );
-        
+
         // Copy visibility flag from passed to current Actor.
         this.setVisible( original.isVisible() );
 
-        // If copying tintColor, then...
-        if (copyUsingTintColor)
-        
-            {
-            // Copy using tinting color.
-            
-            // Copy tinting color from passed to current Actor.
-            //this.tintColor = new Color();
-            //this.tintColor.r = original.getColor().r;
-            //this.tintColor.g = original.getColor().g;
-            //this.tintColor.b = original.getColor().b;
-            //this.tintColor.a = original.getColor().a;
-            //this.setTintColor( original.getTintColor() );
-            }
-        
-        else
-            
-            {
-            // Copy using regular color.
-            
-            // Copy color to current Actor.
-            this.setColor( original.getColor() );
-            }
-            
+        // Copy tinting color from passed to current Actor.
+        //this.tintColor = new Color();
+        //this.tintColor.r = original.getColor().r;
+        //this.tintColor.g = original.getColor().g;
+        //this.tintColor.b = original.getColor().b;
+        //this.tintColor.a = original.getColor().a;
+        this.setTintColor( original.getTintColor() );
+
     }
-    
+
     @SuppressWarnings({"MethodDoesntCallSuperMethod", "CloneDoesntCallSuperClone", "CloneDeclaresCloneNotSupported"})
     @Override
     public BaseActor clone()
@@ -594,5 +579,5 @@ public class BaseActor extends Group
         return newbie;
 
     }
-    
+
 }

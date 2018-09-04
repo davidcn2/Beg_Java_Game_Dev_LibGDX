@@ -342,7 +342,8 @@ public class BaseActor extends Group // Extends the Group class from LibGDX.
         // vector (MTV), which is the smallest vector along which an intersecting shape can get moved to
         // be separate from the other shape.
 
-        Intersector.MinimumTranslationVector mtv;
+        Intersector.MinimumTranslationVector mtv; // Minimum magnitude vector required to push the
+        // polygon defined by verts1 out of the collision with the polygon defined by verts2.
         Polygon poly1; // Reference to bounding polygon for current Actor.
         Polygon poly2; // Reference to bounding polygon for passed Actor.
 
@@ -366,9 +367,9 @@ public class BaseActor extends Group // Extends the Group class from LibGDX.
             Minimum Translation Vector indicates the minimum magnitude vector required
             to push the polygon defined by verts1 out of the collision with the polygon
             defined by verts2.
-            Instantiate a minimum transaction vector object.
             */
 
+            // Instantiate a minimum transaction vector object.
             mtv = new Intersector.MinimumTranslationVector();
 
             // Obtain a minimum translation vector indicating the minimum magnitude vector
