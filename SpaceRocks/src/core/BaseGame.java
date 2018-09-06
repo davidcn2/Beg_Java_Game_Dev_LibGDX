@@ -83,6 +83,7 @@ public abstract class BaseGame extends Game { // Extends the Game class from Lib
 
         // Clear objects from memory.
         skin.dispose();
+        super.dispose();
 
     }
 

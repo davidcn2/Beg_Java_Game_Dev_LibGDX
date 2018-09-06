@@ -363,6 +363,7 @@ public class DemoScreen extends BaseScreen // Extends the BaseScreen class.
         // The function gets called when the user presses a key.
         
         // 1.  Resets the game when pressing the Z key.
+        // 2.  Exits the game when pressing the Escape key.
         
         // If the user pressed the Z key, then...
         if (keycode == Keys.Z)
@@ -370,6 +371,16 @@ public class DemoScreen extends BaseScreen // Extends the BaseScreen class.
             
             // Reset the game.
             game.setScreen( new DemoScreen(game) );
+        
+        // Otherwise, if the user pressed the Escape key, then...
+        else if (keycode == Keys.ESCAPE)
+            // The user pressed the Escape key.
+            
+            {
+            // Exit the game.
+            System.out.println("Exit application here!");
+            Gdx.app.exit();
+            }
         
         // Return a value.
         return false;

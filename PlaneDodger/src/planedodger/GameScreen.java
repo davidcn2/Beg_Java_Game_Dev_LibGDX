@@ -491,6 +491,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         // 1.  Pauses the game when pressing the P key.
         // 2.  Resets the game when pressing the R key.
         // 3.  Moves the player up when pressing the space key.
+        // 4.  Exits the game when pressing the Escape key.
         
         // InputProcessor methods for handling discrete input.
         
@@ -521,6 +522,15 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
             player.setVelocityXY( 0, 300 );
         }
             
+        // If the user pressed the Escape key, then...
+        if (keycode == Keys.ESCAPE)
+        {
+            // The user pressed the Escape key.
+            
+            // Exit the game.
+            Gdx.app.exit();
+        }
+        
         // Return a value.
         return false;
         

@@ -383,6 +383,15 @@ public class CheeseLevel extends BaseScreen { // Extends the BaseScreen class.
             togglePaused();
         }
         
+        // If the user pressed the Escape key, then...
+        if (keycode == Keys.ESCAPE)
+        {
+            // The user pressed the Escape key.
+            
+            // Exit the game.
+            Gdx.app.exit();
+        }
+        
         // Return a value.
         return false;
         

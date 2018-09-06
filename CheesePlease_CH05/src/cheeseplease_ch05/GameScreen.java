@@ -288,10 +288,21 @@ public class GameScreen extends BaseScreen
     @Override
     public boolean keyDown(int keycode)
     {
+        
         if (keycode == Keys.P)    
             togglePaused(); 
 
+        // If the user pressed the Escape key, then...
+        if (keycode == Keys.ESCAPE)
+        {
+            // The user pressed the Escape key.
+            
+            // Exit the game.
+            Gdx.app.exit();
+        }
+        
         return false;
+        
     }
     
 }

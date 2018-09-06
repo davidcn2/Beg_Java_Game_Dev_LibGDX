@@ -482,6 +482,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         // 1.  Pauses the game when pressing the P key.
         // 2.  Resets the game when pressing the R key.
         // 3.  Causes the player to jump when pressing the space key -- if on the ground.
+        // 4.  Exits the game when pressing the Escape key.
         
         Vector2 jumpVec; // Vector associated with jumping movement.
         
@@ -512,6 +513,15 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
             jumpVec = new Vector2( 0, 3 ); // Establish vector associated with jumping movement.
             player.applyImpulse( jumpVec ); // Applies impulse to player to cause a jump.
             player.setActiveAnimation("jump"); // Set active animation of player to jump.
+        }
+        
+        // If the user pressed the Escape key, then...
+        if (keycode == Keys.ESCAPE)
+        {
+            // The user pressed the Escape key.
+            
+            // Exit the game.
+            Gdx.app.exit();
         }
         
         // Return a value.

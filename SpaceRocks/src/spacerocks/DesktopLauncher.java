@@ -12,6 +12,7 @@ public class DesktopLauncher {
 		config.width = 800;
 		config.height = 600;
 		config.title = "Space Rocks!";
+                config.forceExit = false; // Prevent default behavior of LWJGL 2 backend calling System.exit(-1).
 
 		new LwjglApplication(new SpaceRocksGame(), config);
 	}

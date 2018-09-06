@@ -388,13 +388,19 @@ public abstract class BaseScreen implements Screen, InputProcessor, ControllerLi
     public void pause()   {  }
     @Override
     public void resume()  {  }
+    
     @Override
     public void dispose()
     {
         // The method occurs when removing the screen and allows for clearing of related resources from memory.
 
-        // Clear memory related to asset manager.
+        // Clear LibGDX objects from memory.
         manager.dispose();
+        uiStage.dispose();
+        mainStage.dispose();
+        game.dispose();
+        uiTable = null;
+        
     }
 
     @Override

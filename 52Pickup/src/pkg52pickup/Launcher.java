@@ -21,6 +21,7 @@ public class Launcher
 	config.width = 800; // Set width of application window.
 	config.height = 600; // Set height of application window.
 	config.title = "52 Card Pickup!"; // Set title of application.
+        config.forceExit = false; // Prevent default behavior of LWJGL 2 backend calling System.exit(-1).
         
         // Launch game using configuration settings.
 	new LwjglApplication(new pkg52pickupGame(), config);

@@ -423,7 +423,9 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
     {
 
         // The function gets called when the user presses a key.
+        
         // Pauses the game when pressing the P key.
+        // Exits the game when pressing the Escape key.
 
         // If the user pressed the P key, then...
         if (keycode == Keys.P) {
@@ -431,6 +433,15 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
 
             // Pause the game.
             togglePaused();
+        }
+        
+        // If the user pressed the Escape key, then...
+        if (keycode == Keys.ESCAPE)
+        {
+            // The user pressed the Escape key.
+            
+            // Exit the game.
+            Gdx.app.exit();
         }
 
         // Return a value.

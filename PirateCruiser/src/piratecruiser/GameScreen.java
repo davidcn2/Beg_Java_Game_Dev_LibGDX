@@ -267,8 +267,11 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         (Without Shift key press)           
         1.  Up = Move player forward.
         2.  Down = Move player backward.
-        2.  Left = Turn player left.
-        3.  Right = Turn player right.
+        3.  Left = Turn player left.
+        4.  Right = Turn player right.
+        
+        (General key press)
+        1.  Escape = Exit application.
         */
         
         // Declare constants.
@@ -315,6 +318,12 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
             // Turn the player to the right.
             player.turn( rotateSpeed * dt );
 
+        // If the user pressed the Escape key, then...
+        if ( Gdx.input.isKeyPressed(Keys.ESCAPE) )
+            // The user pressed the Escape key.
+            // Exit the game.
+            Gdx.app.exit();
+        
         // 3.  Set the camera direction to face the player.
         mainStage3D.setCameraDirection( player.getPosition() );
         

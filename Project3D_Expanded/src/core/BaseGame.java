@@ -72,7 +72,7 @@ public abstract class BaseGame extends Game { // Extends the Game class from Lib
 
     @Override
     public abstract void create();
-
+    
     @Override
     public void dispose()
     {
@@ -80,9 +80,10 @@ public abstract class BaseGame extends Game { // Extends the Game class from Lib
         /*
         The function occurs during the cleanup phase and clears objects from memory.
         */
-
+        
         // Clear objects from memory.
         skin.dispose();
+        super.dispose();
 
     }
 

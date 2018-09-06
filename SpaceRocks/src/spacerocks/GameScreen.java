@@ -684,6 +684,7 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
         // 1.  Pauses the game when pressing the P key.
         // 2.  Resets the game when pressing the R key.
         // 3.  Generates a laser when pressing the SPACE key.
+        // 4.  Exits the game when pressing the Escape key.
 
         PhysicsActor laser; // PhysicsActor that will act as the current laser.
 
@@ -738,6 +739,15 @@ public class GameScreen extends BaseScreen // Extends the BaseScreen class.
 
         }
 
+        // If the user pressed the Escape key, then...
+        if (keycode == Keys.ESCAPE)
+        {
+            // The user pressed the Escape key.
+            
+            // Exit the game.
+            Gdx.app.exit();
+        }
+        
         // Return a value.
         return false;
 

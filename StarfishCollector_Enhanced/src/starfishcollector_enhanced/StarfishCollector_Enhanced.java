@@ -16,6 +16,7 @@ public class StarfishCollector_Enhanced {
         config.width = 800; // Set width of application window.
         config.height = 600; // Set height of application window.
         config.title = "Starfish Collector"; // Set title of application.
+        config.forceExit = false; // Prevent default behavior of LWJGL 2 backend calling System.exit(-1).
         
         // Create the initial object.
         TurtleGame myProgram = new TurtleGame();

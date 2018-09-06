@@ -424,24 +424,41 @@ public class GameScreen extends BaseScreen { // Extends the BaseScreen class.
         
         // The function gets called when the user presses a key.
         // Pauses the game when pressing the P key.
+        // Resets the game when pressing the R key.
+        // Exits the game when pressing the Escape key.
         
-        // If the user pressed the P key, then...
-        if (keycode == Input.Keys.P)
-        {
-            // The user pressed the P key.
+        // Depending on key pressed...
+        switch (keycode) {
             
-            // Pause the game.
-            togglePaused();
-        }
+            case Input.Keys.P:
+                
+                // The user pressed the P key.
+                
+                // Pause the game.
+                togglePaused();
+                break;
+                
+            case Input.Keys.R:
+                
+                // The user pressed the R key.
+                
+                // Reset the game.
+                game.setScreen( new GameScreen(game) );
+                break;
+                
+            case Input.Keys.ESCAPE:
+                
+                // The user pressed the Escape key.
+                
+                // Exit the game.
+                Gdx.app.exit();
+                break;
+                
+            default:
+                break;
+                
+        } // End - Switch ... Depending on key pressed...
         
-        else if (keycode == Input.Keys.R)
-        {
-            // The user pressed the R key.
-            
-            // Reset the game.
-            game.setScreen( new GameScreen(game) );
-        }
-            
         // Return a value.
         return false;
         
